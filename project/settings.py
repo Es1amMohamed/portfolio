@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     ## My Apps
     "portfolio",
-    'django_summernote',
+    "django_summernote",
 ]
 
 MIDDLEWARE = [
