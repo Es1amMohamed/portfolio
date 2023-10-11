@@ -99,3 +99,20 @@ class Blogs(models.Model):
             self.slug = slugify(self.title)
 
         super(Blogs, self).save(*args, **kwargs)
+
+
+class CoursesAndCertificates(models.Model):
+    title = models.CharField(max_length=100)
+    course_link = models.URLField(max_length=200)
+    certificate_link = models.URLField(max_length=200, null=True, blank=True)
+    description = models.TextField(max_length=1000)
+    slug = models.SlugField(null=True, blank=True)
+    
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+        super(CoursesAndCertificates, self).save(*args, **kwargs)
