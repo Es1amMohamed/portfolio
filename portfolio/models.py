@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.utils.text import slugify
@@ -6,6 +7,7 @@ from django.utils.text import slugify
 class Portfolio(models.Model):
     first_name = models.CharField(max_length=60, blank=True)
     last_name = models.CharField(max_length=60, blank=True)
+    title = models.CharField(max_length=60, blank=True)
     main_image = models.ImageField(upload_to="main image")
     years_of_experience = models.IntegerField(default=0)
     bio = models.TextField(max_length=1000)
@@ -71,6 +73,7 @@ class Colleagues(models.Model):
     job_title = models.CharField(max_length=100)
     comment = models.TextField(max_length=500)
     image = models.ImageField(upload_to="colleagues_images")
+    is_approve = models.BooleanField(default=False)
     workplace = models.CharField(max_length=50)
 
     def __str__(self):
@@ -89,6 +92,7 @@ class Blogs(models.Model):
     author = models.ForeignKey(Portfolio, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="blogs_images", null=True, blank=True)
     description = models.TextField(max_length=1000)
+    created_at = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(null=True, blank=True)
 
     def __str__(self):
@@ -107,7 +111,7 @@ class CoursesAndCertificates(models.Model):
     certificate_link = models.URLField(max_length=200, null=True, blank=True)
     description = models.TextField(max_length=1000)
     slug = models.SlugField(null=True, blank=True)
-    
+
     def __str__(self):
         return self.title
 

@@ -6,5 +6,4 @@ app_name = "portfolio"
 
 urlpatterns = [
     path("", views.main, name="main"),
-    path("ar", views.translate, name="translate"),
 ]
