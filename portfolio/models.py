@@ -5,15 +5,30 @@ from django.utils.text import slugify
 
 
 class Portfolio(models.Model):
+    title = models.CharField(max_length=60, blank=True)
+    icon = models.ImageField(blank=True, upload_to="icons")
+    main_image = models.ImageField(upload_to="main image")
+    skills_bio = models.TextField(max_length=1000)
+    experience_bio = models.TextField(max_length=1000)
+
+    def __str__(self):
+        return self.title
+
+
+class AboutMe(models.Model):
     first_name = models.CharField(max_length=60, blank=True)
     last_name = models.CharField(max_length=60, blank=True)
-    title = models.CharField(max_length=60, blank=True)
-    main_image = models.ImageField(upload_to="main image")
+    years_of_experience = models.IntegerField(default=0)
     years_of_experience = models.IntegerField(default=0)
     bio = models.TextField(max_length=1000)
-    bio2 = models.TextField(max_length=1000)
-    cv = models.FileField(upload_to="cv")
     personal_picture = models.ImageField(upload_to="personal_picture")
+    cv = models.FileField(upload_to="cv")
+    phone_number = models.CharField(max_length=20)
+    email = models.EmailField(max_length=200)
+    facebook_link = models.URLField(max_length=200)
+    github_link = models.URLField(max_length=200)
+    linkedin_link = models.URLField(max_length=200)
+    address = models.CharField(max_length=200)
 
     def __str__(self):
         return self.first_name
