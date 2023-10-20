@@ -135,3 +135,13 @@ class CoursesAndCertificates(models.Model):
             self.slug = slugify(self.title)
 
         super(CoursesAndCertificates, self).save(*args, **kwargs)
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=200)
+    phone = models.CharField(max_length=25, null=True, blank=True)
+    message = models.TextField(max_length=1000)
+
+    def __str__(self):
+        return self.name

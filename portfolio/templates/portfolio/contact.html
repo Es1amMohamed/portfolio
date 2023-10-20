@@ -79,10 +79,12 @@
         <!-- contact form -->
         <div class="col-lg-6">
           <form ref="contactForm"
+            method="POST"
             class="contact-form form-styled"
-            action="contact_form.php"
+            action=""
             data-success-msg="Message sent successfully!"
             data-err-msg="Oops! something went wrong, please try again.">
+            {% csrf_token %}
             <div class="group">
               <label>Name</label>
               <div class="control has-prefix-icon">
@@ -106,15 +108,15 @@
                 <input class="ltr-dir"
                   type="email"
                   inputmode="email"
-                  name="email"
+                  name="email2"
                   placeholder="e.g. john.doe@gmail.com"
-                  required>
+                  >
                 <i class="fa fa-envelope prefix-icon" aria-hidden="true"></i>
 
                 <!-- validation errors messages -->
                 <div class="errors-msgs">
-                  <input class="required" type="hidden" value="Email is required">
-                  <input class="invalid" type="hidden" value="Please enter a valid email address">
+                  <input class="required" type="hidden" name="email" value="Email is required">
+                  <input class="invalid" type="hidden" name="email" value="Please enter a valid email address">
                 </div>
               </div>
             </div>
@@ -134,20 +136,21 @@
               </div>
             </div>
             <div class="group">
-              <label>Message</label>
+              <label >Message</label>
               <div class="control has-prefix-icon">
-                <textarea name="message" placeholder="Write message..." required></textarea>
+                
+                <textarea name="message2" placeholder="Write message..." required></textarea>
                 <i class="fa fa-comments prefix-icon" aria-hidden="true"></i>
 
                 <!-- validation errors messages -->
                 <div class="errors-msgs">
-                  <input class="required" type="hidden" value="Message is required">
+                  <input class="required" type="hidden" name= 'message'>
                 </div>
               </div>
             </div>
             <div class="group">
               <div class="control">
-                <button class="submit-btn btn btn-dark" type="button" @click="contactFormValidation">Send</button>
+                <button class="submit-btn btn btn-dark" type="submit" @click="contactFormValidation">Send</button>
               </div>
             </div>
           </form>
