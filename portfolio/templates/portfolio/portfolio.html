@@ -11,7 +11,7 @@
           ref="heroSection">
           <div class="hero-img">
             <div class="layer" v-clone>
-              <img src="https://via.placeholder.com/600x800" alt="User Name">
+              <img src="{{my_portfolio.main_image.url}}" alt="User Name">
             </div>
           </div>
 
@@ -147,7 +147,7 @@
                     Skills Included?
                   </h2>
                   <p>
-                    I develop simple, intuitive and responsive user interface that helps users get things done with less effort and time with those technologies.
+                    {{my_portfolio.skills_bio}}.
                   </p>
                   <div ref="skillsSwitchBtn" class="toggle-switch-btn">
                     <input id="skills-list" type="radio" value="skills" v-model="skillsType" checked>
@@ -231,7 +231,7 @@
                     With Many Awards!
                   </h2>
                   <p>
-                    I have been developing sites and apps for {{ experienceYears }} years and i know for sure the main trends and directions of modern design, I have been a visionary and a reliable software engineering partner for world-class brands. You will get a decent result as you expect.
+                    {{my_portfolio.experience_bio}}.
                   </p>
                 </div>
               </div>
