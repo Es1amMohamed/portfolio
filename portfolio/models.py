@@ -142,6 +142,7 @@ class Contact(models.Model):
     email = models.EmailField(max_length=200)
     phone = models.CharField(max_length=25, null=True, blank=True)
     message = models.TextField(max_length=1000)
+    created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.name
