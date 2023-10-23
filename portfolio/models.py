@@ -87,10 +87,10 @@ class Colleagues(models.Model):
     name = models.CharField(max_length=100)
     job_title = models.CharField(max_length=100)
     comment = models.TextField(max_length=500)
-    image = models.ImageField(upload_to="colleagues_images")
-    is_approve = models.BooleanField(default=False)
+    image = models.ImageField(upload_to="colleagues_images", default="default.png")
     workplace = models.CharField(max_length=50)
-
+    created_at = models.DateTimeField(default=timezone.now)
+    is_approve = models.BooleanField(default=False)
     def __str__(self):
         return self.name
 

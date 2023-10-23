@@ -10,7 +10,49 @@ from django.contrib import messages
 
 
 def main(request):
-    return render(request, "portfolio/portfolio.html")
+    all_colleagues = Colleagues.objects.filter(is_approve = True)
+    if request.method == 'POST':
+        if request.FILES.get('image') == None:
+            colleagues_name = request.POST['name']
+            job_title = request.POST['jobtitle']
+            workplace = request.POST['workplace']
+            comment = request.POST['comment2']
+            
+            colleagues = Colleagues.objects.create(
+                name=colleagues_name,
+                job_title=job_title,
+                workplace=workplace,
+                comment=comment,
+            )
+            colleagues.save()
+            messages.success(
+                request, "Thank you for your comment. I will approve to it soon."
+            )
+            return redirect("/")
+        if  request.FILES['image'] != None:
+            colleagues_name = request.POST['name']
+            job_title = request.POST['jobtitle']
+            workplace = request.POST['workplace']
+            comment = request.POST['comment2']
+            image = request.FILES['image']
+            
+            colleagues = Colleagues.objects.create(
+                name=colleagues_name,
+                job_title=job_title,
+                workplace=workplace,
+                comment=comment,
+                image = image
+            )
+            colleagues.save()
+            messages.success(
+                request, "Thank you for your comment. I will approve to it soon."
+            )
+            return redirect("/")
+        
+    if len(all_colleagues) == 0:
+        colleagues = 'Be the first to comment.'
+        return render(request, "portfolio/portfolio.html", {"colleague": colleagues})
+    return render(request, "portfolio/portfolio.html", {"colleagues": all_colleagues})
 
 
 class Projects(ListView):
@@ -37,8 +79,6 @@ def contact(request):
         sender_email = request.POST["email2"]
         sender_phone = request.POST["phone"]
         message = request.POST["message2"]
-        print(message)
-        print(sender_email)
         contact = Contact.objects.create(
             name=sender_name, email=sender_email, phone=sender_phone, message=message
         )

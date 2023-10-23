@@ -300,32 +300,157 @@
               </h2>
             </div>
           </div>
-
+          {% if colleague %}
+              <div class="container">
+                <div class="section-title">
+                  <h2 class="title">
+                  {{colleague}}
+                  
+                  </h2>
+                </div>
+              </div>
+          {% else %}
           <div class="section-content">
             <ul class="testimonials-items" v-staggerdelay="500">
+              {% for colleague in colleagues  %}
               <li class="has-ultimate-tooltip"
-                tabindex="0"
-                v-for="item in testimonialsItems"
-                :key="item.quoteAuthor.en">
+                tabindex="0">
                 <div class="testimonials-item">
                   <div class="testimonial-author-img">
-                    <img :src="item.imgUrl || 'assets/images/testimonials/anonymous-user.png'" :alt="item.quoteAuthor.en">
+                    <img src="{{colleague.image.url}}" alt="">
                   </div>
                   <div class="ultimate-tooltip">
-                    <p>{{ item.quoteContent.en }}</p>
-                    <h4 class="ultimate-tooltip-title">{{ item.quoteAuthor.en }}</h4>
-                    <h5 class="ultimate-tooltip-subtitle">{{ item.jobTitle.en }}</h5>
+                    <p>{{ colleague.comment }}</p>
+                    <h4 class="ultimate-tooltip-title">{{ colleague.name }}</h4>
+                    <h5 class="ultimate-tooltip-subtitle">{{ colleague.job_title }}</h5>
                   </div>
                   <div class="ultimate-tooltip-arrow"></div>
                 </div>
               </li>
+              {% endfor %}
+              
             </ul>
           </div>
+          {% endif %}
         </div>
         <!-- end of testimonials section -->
 
         <!-- start of contact section -->
-        
+        <div id="contact" class="contact-section section" tabindex="-1">
+          <div class="container">
+            <div class="section-content row">
+      
+              <!-- text box -->
+              <div class="contact-text col-lg-6">
+                <div class="text-box-inline">
+                  <span class="subtitle">testtimonials</span>
+                  <h2>
+                    Have you worked with me?
+                    <br>
+                    Please Drop Your recommendation
+                  </h2>
+                  <p>
+                    Get in touch and let me know your opinion about me. Fill out the form and join my small community.
+                  </p>
+                </div>
+      
+                <!-- contact info -->
+                
+      
+                <!-- social links -->
+                
+              </div>
+              
+              <!-- colleagues form -->
+              <div class="col-lg-6">
+                <form ref="contactForm"
+                  method="POST"
+                  class="contact-form form-styled"
+                  action=""
+                  data-success-msg="Message sent successfully!"
+                  data-err-msg="Oops! something went wrong, please try again."
+                  enctype='multipart/form-data'>
+                  {% csrf_token %}
+                  <div class="group">
+                    <label>Name</label>
+                    <div class="control has-prefix-icon">
+                      <input type="text"
+                        name="name"
+                        placeholder="e.g. John Doe"
+                        minlength="3"
+                        required>
+                      <i class="fa fa-user-circle prefix-icon" aria-hidden="true"></i>
+                      <!-- validation errors messages -->
+                      <div class="errors-msgs">
+                        <input class="required" type="hidden" value="Name is required">
+                        <input class="minLength" type="hidden" value="Name must be at least 3 characters">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <label>Job Title</label>
+                    <div class="control has-prefix-icon">
+                      <input class="ltr-dir"
+                        type="text"
+                        inputmode="text"
+                        name="jobtitle"
+                        minlength="3"
+                        placeholder="john eng"
+                        required>
+                      <i class="fa fa-user-circle prefix-icon" aria-hidden="true"></i>
+                      <!-- validation errors messages -->
+                      <div class="errors-msgs">
+                        <input class="required" type="hidden" value="Job Title is required">
+                        <input class="minLength" type="hidden" value="Job Title must be at least 3 characters">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="group has-prefix-icon">
+                    <label>Workplace</label>
+                    <div class="control has-prefix-icon">
+                      <input type="text"
+                        inputmode="text"
+                        name="workplace"
+                        minlength="3"
+                        placeholder="Workplace"
+                        required>
+                      <i class="fa fa-building-o prefix-icon" aria-hidden="true"></i>
+                      <!-- validation errors messages -->
+                      <div class="errors-msgs">
+                        <input class="required" type="hidden" value="Workplace is required">
+                        <input class="minLength" type="hidden" value="Workplace must be at least 3 characters">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="control has-prefix-icon">
+                    <label>Image</label>
+                    <div class="control has-prefix-icon">
+                      <input type="file" name='image' inputmode="image" placeholder="Image" class="shadow-none bg-gray-100">
+                    </div>  
+                    </div>
+                  <div class="group">
+                    <label >Your Comment</label>
+                    <div class="control has-prefix-icon">
+                      
+                      <textarea name="comment2" placeholder="Write comment..." required></textarea>
+                      <i class="fa fa-comments prefix-icon" aria-hidden="true"></i>
+      
+                      <!-- validation errors messages -->
+                      <div class="errors-msgs">
+                        <input class="required" type="hidden" name= 'comment'>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div class="control">
+                      <button class="submit-btn btn btn-dark" type="submit" @click="contactFormValidation">Drop</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- end of contact section -->
         {% endblock 'body' %}
         
