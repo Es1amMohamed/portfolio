@@ -52,7 +52,7 @@ class Tools(models.Model):
 
 class Projects(models.Model):
     title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="projects images")
+    image = models.ForeignKey('Project_Images', on_delete=models.CASCADE, blank=True, null=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField(null=True, blank=True)
     description = models.TextField(max_length=1000)
@@ -82,7 +82,13 @@ class Projects(models.Model):
     def __str__(self):
         return self.title
 
-
+class Project_Images(models.Model):
+    image = models.ImageField(upload_to="projects_images")
+    project = models.ForeignKey(Projects, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.project.title
+    
 class Colleagues(models.Model):
     name = models.CharField(max_length=100)
     job_title = models.CharField(max_length=100)
@@ -106,6 +112,7 @@ class Blogs(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Portfolio, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="blogs_images", null=True, blank=True)
+    caption = models.CharField(max_length=1000, null=True, blank=True)
     description = models.TextField(max_length=1000)
     created_at = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(null=True, blank=True)

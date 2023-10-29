@@ -90,13 +90,11 @@ def contact(request):
     return render(request, "portfolio/contact.html")
 
 
-def colleagues(request):
-    return render(request, "portfolio/colleagues.html")
+
 
 
 def skillsandtools(request):
     pass
 
-# <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-# <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="eslam-mohamed-aa3b87239" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://eg.linkedin.com/in/eslam-mohamed-aa3b87239?trk=profile-badge">Eslam Mohamed</a></div>
+
               

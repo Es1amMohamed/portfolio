@@ -1,2 +1,73 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block 'body' %}
+<div class="portfolio-page portfolio-section section page">
+    <div class="container">
+        <div class="section-content">
+            <ul class="portfolio-items has-works">
+                <li>
+                    <div class="text-box-block">
+                        <span class="subtitle">
+                            <a href="archive-portfolio.html?tax=cat&amp;cat=HTML">HTML</a>
+                        </span>
+                        <h2>Lorem Ipsum Dolor 16</h2>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <ul class="work-tools">
+                            <li>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=HTML">HTML</a>
+                            </li>
+                            <li>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=Slim">Slim</a>
+                            </li>
+                            <li>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=CSS">CSS</a>
+                            </li>
+                            <li>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=Less">Less</a>
+                            </li>
+                            <li>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=JavaScript">JavaScript</a>
+                            </li>
+                            <li>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=TypeScript">TypeScript</a>
+                            </li>
+                            <li>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=Bootstrap">Bootstrap</a>
+                            </li>
+                            <li>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=AJAX">AJAX</a>
+                            </li>
+                            <li>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=Vue">Vue</a>
+                            </li>
+                            <li>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=NodeJs">NodeJs</a>
+                            </li>
+                            <li>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=MongoDB">MongoDB</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+               
+                
+                
+                <li class="portfolio-item" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
+                    <a class="glightbox" target="_blank" rel="noopener" data-gallery="gallery1" href="https://via.placeholder.com/355x200" data-glightbox="title:caption 5">
+                        <div class="item-img">
+                          
+                            <img src="https://via.placeholder.com/355x200" alt="caption 5" href='http://127.0.0.1:8000/admin/portfolio/colleagues/'>
+                        </div>
+                        <div class="item-details">
+                            <h3 class="title">caption 5</h3>
+                        </div>
+                    </a>
+                    <div class="js-tilt-glare" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none;">
+                        <div class="js-tilt-glare-inner" style="position: absolute; top: 50%; left: 50%; pointer-events: none; background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%); transform: rotate(180deg) translate(-50%, -50%); transform-origin: 0% 0%; opacity: 0; width: 492px; height: 492px;">
+
+                        </div>
+                    </div>
+                </li>
+                
+{% endblock 'body' %}
