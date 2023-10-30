@@ -5,7 +5,7 @@ from django.views import View
 from django.views.generic import ListView
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
-
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 
@@ -60,8 +60,9 @@ class Projects(ListView):
     template_name = "portfolio/projects.html"
 
 
-class Blogs(ListView):
+class Blogs_view(ListView):
     model = Blogs
+    context_object_name = "blogs"
     template_name = "portfolio/blogs.html"
 
 
@@ -69,8 +70,9 @@ def single_project(request):
     pass
 
 
-def single_blog(request):
-    pass
+def single_blog(request, slug):
+    blog = Blogs.objects.get(slug=slug)
+    return render(request, "portfolio/single_blog.html", {'blog': blog})
 
 
 def contact(request):

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block 'body' %}
-{% comment %} <div class="portfolio-page portfolio-section section page">
+<div class="portfolio-page portfolio-section section page">
     <div class="container">
         <div class="section-content">
             <ul class="portfolio-items has-works">
@@ -50,61 +50,24 @@
                         </ul>
                     </div>
                 </li>
-            </ul>
-        </div>
-    </div>
-</div> {% endcomment %}
                
                 
                 
-<div id="portfolio" class="portfolio-section section" tabindex="-1">
-    <div class="container">
-      <div class="section-content">
+                <li class="portfolio-item" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
+                    <a class="glightbox" target="_blank" rel="noopener" data-gallery="gallery1" href="{{blog.image.url}}" data-glightbox="title:{{blog.title}}">
+                        <div class="item-img">
+                          
+                            <img src="{{blog.image.url}}" alt="{{blog.title}}" href='{{blog.image.url}}'>
+                        </div>
+                        <div class="item-details">
+                            <h3 class="title">{{blog.title}}</h3>
+                        </div>
+                    </a>
+                    <div class="js-tilt-glare" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none;">
+                        <div class="js-tilt-glare-inner" style="position: absolute; top: 50%; left: 50%; pointer-events: none; background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%); transform: rotate(180deg) translate(-50%, -50%); transform-origin: 0% 0%; opacity: 0; width: 492px; height: 492px;">
 
-        <!-- portfolio items -->
-        <ul class="portfolio-items has-works" ref="portfolioItems" data-no-works-msg="No works to load">
-          <li>
-            <!-- text box -->
-            <div class="text-box-inline">
-              <span class="subtitle">my works</span>
-              <h2>
-                See My Works Which
-                <br>
-                Will Amaze You!
-              </h2>
-              <p>
-                We develop the best quality website that serves for the long-term. Well-documented, clean, easy and elegant interface helps any non-technical clients.
-              </p>
-              
-            </div>
-          </li>
-        
-          <!-- start items list -->
-        {% for blog in blogs %}
-            <li class="portfolio-item"
-                
-                >
-                <a href='{{blog.slug}}' :href="work.url" target="_blank" rel="noopener">
-                <div class="item-img">
-                    <img 
-                    src='{{blog.image.url}}'>
-                </div>
-                <div class="item-details">
-                    <h3 class="title">{{ blog.title }}</h3>
-                    <div class="date">{{ blog.created_at }}</div>
-                </div>
-                </a>
-            </li>
-        {% endfor %}
-          <!-- end items list -->
-        
-          {% comment %} <li>
-            <button class="more" @click="getPortfolioItems">Load more works</button>
-          </li> {% endcomment %}
-        </ul>
-      </div>
-    </div>
-  </div>
-
+                        </div>
+                    </div>
+                </li>
                 
 {% endblock 'body' %}

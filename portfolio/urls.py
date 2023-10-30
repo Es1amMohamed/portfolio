@@ -8,5 +8,6 @@ urlpatterns = [
     path("", views.main, name="main"),
     path("contact/", views.contact, name="contact"),
     path("projects/", views.Projects.as_view(), name="projects"),
-    path("blogs/", views.Blogs.as_view(), name="blogs"),
+    path("blogs/", views.Blogs_view.as_view(), name="blogs"),
+    path("blogs/<str:slug>", views.single_blog, name="single_blog"),
 ]
