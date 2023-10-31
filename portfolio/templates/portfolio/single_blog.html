@@ -2,18 +2,26 @@
 {% load static %}
 
 {% block 'body' %}
-<div class="portfolio-page portfolio-section section page">
+<div class="portfolio-page portfolio-section section page" >
     <div class="container">
-        <div class="section-content">
+        <div class="section-content" >
             <ul class="portfolio-items has-works">
+            
                 <li>
-                    <div class="text-box-block">
-                        <span class="subtitle">
-                            <a href="archive-portfolio.html?tax=cat&amp;cat=HTML">HTML</a>
-                        </span>
+                    <div class="text-box-block" >
+                        
+                            <span class="subtitle">
+                            
+                                <a href="archive-portfolio.html?tax=cat&amp;cat=HTML">HTML</a>
+                            </span>
+                        
                         <h2>Lorem Ipsum Dolor 16</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                        <ul class="work-tools">
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                            when an unknown printer took a galley of type and scrambled it to make a
+                            type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                             remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                              and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        {% comment %} <ul class="work-tools">
                             <li>
                                 <a href="archive-portfolio.html?tax=tools&amp;tools=HTML">HTML</a>
                             </li>
@@ -47,16 +55,15 @@
                             <li>
                                 <a href="archive-portfolio.html?tax=tools&amp;tools=MongoDB">MongoDB</a>
                             </li>
-                        </ul>
+                        </ul> {% endcomment %}
                     </div>
                 </li>
-               
+            
                 
-                
+             <div style="width:800px; margin:0 auto;">
                 <li class="portfolio-item" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
                     <a class="glightbox" target="_blank" rel="noopener" data-gallery="gallery1" href="{{blog.image.url}}" data-glightbox="title:{{blog.title}}">
                         <div class="item-img">
-                          
                             <img src="{{blog.image.url}}" alt="{{blog.title}}" href='{{blog.image.url}}'>
                         </div>
                         <div class="item-details">
@@ -69,5 +76,5 @@
                         </div>
                     </div>
                 </li>
-                
+            </div> 
 {% endblock 'body' %}
