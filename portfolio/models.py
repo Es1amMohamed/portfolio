@@ -19,12 +19,14 @@ class AboutMe(models.Model):
     first_name = models.CharField(max_length=60, blank=True)
     last_name = models.CharField(max_length=60, blank=True)
     years_of_experience = models.IntegerField(default=0)
-    years_of_experience = models.IntegerField(default=0)
     bio = models.TextField(max_length=1000)
+    bio_2 = models.TextField(max_length=1000, null=True, blank=True)
     personal_picture = models.ImageField(upload_to="personal_picture")
     cv = models.FileField(upload_to="cv")
     phone_number = models.CharField(max_length=20)
+    phone_number_2 = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(max_length=200)
+    email_2 = models.EmailField(max_length=200, null=True, blank=True)
     facebook_link = models.URLField(max_length=200)
     github_link = models.URLField(max_length=200)
     linkedin_link = models.URLField(max_length=200)
@@ -36,7 +38,7 @@ class AboutMe(models.Model):
 
 class Skills(models.Model):
     name = models.CharField(max_length=50)
-    icon = models.CharField(max_length=100)
+    icon = models.ImageField(upload_to="skills_icon")
 
     def __str__(self):
         return self.name
@@ -44,7 +46,7 @@ class Skills(models.Model):
 
 class Tools(models.Model):
     name = models.CharField(max_length=50)
-    icon = models.CharField(max_length=100)
+    icon = models.ImageField(upload_to="tools_icon")
 
     def __str__(self):
         return self.name

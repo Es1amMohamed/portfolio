@@ -1,4 +1,5 @@
 from pathlib import Path
+from django.conf import settings
 from dotenv import load_dotenv
 import os
 
@@ -126,3 +127,4 @@ MEDIA_URL = "media/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+PDF_FILE_PATH = os.path.join(BASE_DIR, r"media\cv\Eslam_Mohamed_-_Django_Developer.pdf")

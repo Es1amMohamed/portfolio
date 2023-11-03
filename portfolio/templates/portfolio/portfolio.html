@@ -16,28 +16,28 @@
           </div>
 
            <div class="hero-text">
-             <h2>
+             {% comment %} <h2>
               We Design & Build
               <br>
               Creative Products
-            </h2> 
+            </h2>  {% endcomment %}
             <a href="{%url 'portfolio:contact' %}" class="btn">Get In Touch</a>
           </div> 
 
           <div class="social">
             <ul>
               <li>
-                <a href="#" target="_blank" rel="noreferrer" v-tooltip="{text: 'Facebook', dir: 'right'}">
+                <a href="{{about.facebook_link}}" target="_blank" rel="noreferrer" v-tooltip="{text: 'Facebook', dir: 'right'}">
                   <i class="fa fa-facebook" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
-                <a href="#" target="_blank" rel="noreferrer" v-tooltip="{text: 'Twitter', dir: 'right'}">
-                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                <a href="{{about.github_link}}" target="_blank" rel="noreferrer" v-tooltip="{text: 'Githup', dir: 'right'}">
+                  <i class="fa fa-github" aria-hidden="true"></i>
                 </a>
               </li>
               <li>
-                <a href="#" target="_blank" rel="noreferrer" v-tooltip="{text: 'LinkedIn', dir: 'right'}">
+                <a href="{{about.linkedin_link}}" target="_blank" rel="noreferrer" v-tooltip="{text: 'LinkedIn', dir: 'right'}">
                   <i class="fa fa-linkedin" aria-hidden="true"></i>
                 </a>
               </li>
@@ -61,19 +61,23 @@
                       <img src="{%static 'assets/images/icons/emblem.png' %}" alt="Years of Experience">
                     </div>
                     <div class="text">
-                      <h3>{{ experienceYears }}+</h3>
+                      <h3>{{ about.years_of_experience }}+</h3>
                       <strong>Years of Experience</strong>
                     </div>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li class="col-sm-12 col-md-6 col-lg-4">
-                  <a href="#portfolio">
+                  <a href="{%url 'portfolio:projects' %}">
                     <div class="icon">
-                      <img src="assets/images/icons/check-mark.png" alt="Completed Projects">
+                      <img src="{%static 'assets/images/icons/check-mark.png' %}" alt="Completed Projects">
                     </div>
                     <div class="text">
-                      <h3>230+</h3>
+                      {% if length > 0 %}
+                      <h3>{{length}}+</h3>
+                      {% else %}
+                      <h4>i don't have any projects</h4>
+                      {% endif %}
                       <strong>Completed Projects</strong>
                     </div>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -82,11 +86,16 @@
                 <li class="col-sm-12 col-md-6 col-lg-4">
                   <a href="#testimonials">
                     <div class="icon">
-                      <img src="assets/images/icons/happy.png" alt="Happy Clients">
+                      <img src="{%static 'assets/images/icons/happy.png' %}" alt="Happy Clients">
                     </div>
                     <div class="text">
-                      <h3>95+</h3>
+                      {% if length_colleague > 0 %}
+                      <h3>{{length_colleague}}+</h3>
                       <strong>Happy Clients</strong>
+                      {% else %}
+                      <h4> Be the first to comment </h4> 
+                      {% endif %}
+                      
                     </div>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                   </a>
@@ -98,14 +107,14 @@
         <!-- end of statistics section -->
 
         <!-- start of about section -->
+        
         <div id="about" class="about-section section" tabindex="-1" ref="aboutSection">
           <div class="container">
             <div class="section-content row">
-
               <!-- about image -->
               <div class="about-img col-lg-6">
                 <div class="layer" v-clone>
-                  <img src="https://via.placeholder.com/330x500" alt="User Name">
+                  <img src="{{about.personal_picture.url}}" alt="User Name">
                 </div>
               </div>
 
@@ -119,11 +128,11 @@
                     I can Help You!
                   </h2>
                   <p>
-                    Hi! I’m Muhammad Mabrouk, and I’m a developer who has passion for building clean web applications with intuitive functionality. I enjoy the process of turning ideas into reality using creative solutions. I’m always curious about learning new skills, tools, and concepts. In addition to working on various solo full stack projects, I have worked with creative teams, which involves daily stand-ups and communications, source control, and project management.
+                   {{about.bio}}
                   </p>
                   <div class="btns-container">
-                    <a href="#contact" class="btn btn-primary">Hire Me</a>
-                    <a download href="#" class="btn btn-outline-light">Download CV</a>
+                    <a href="{%url 'portfolio:contact'%}" class="btn btn-primary">Hire Me</a>
+                    <a href="{%url 'portfolio:download' %}" class="btn btn-outline-light">Download CV</a>
                   </div>
                 </div>
               </div>
@@ -160,20 +169,23 @@
               </div>
 
               <!-- skills items -->
+              
               <div class="skills-items col-lg-6">
 
                 <!-- skills list -->
-                <ul v-staggerdelay="50" v-show="skillsType === 'skills'">
+                
+                <ul v-staggerdelay="50" v-show="skillsType === 'skills'" >
+                  {% for skill in skills %}
                   <li tabindex="0"
-                    v-for="skill in skillsItems"
-                    :key="skill.title"
-                    v-tooltip="{text: skill.title, dir: 'top'}">
+                    key="{{skill.name}}"
+                    v-tooltip="{text:'{{skill.name}}', dir: 'top'}">
                     <div class="skill-icon">
-                      <img :src="skill.imgUrl" :alt="skill.title">
+                      <img src="{{skill.icon.url}}" alt="{{skill.name}}">
                     </div>
                   </li>
+                  {% endfor %}
                 </ul>
-
+                
                 <!-- tools list -->
                 <ul v-staggerdelay="50" v-show="skillsType === 'tools'">
                   <li tabindex="0"
@@ -422,8 +434,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="control has-prefix-icon">
-                    <label>Image</label>
+                  <div class="group phone-number">
+                    <label>Image <span class="optional">(Optional)</span></label>
                     <div class="control has-prefix-icon">
                       <input type="file" name='image' inputmode="image" placeholder="Image" class="shadow-none bg-gray-100">
                     </div>  

@@ -61,7 +61,7 @@
         }">
           <div class="container">
             <!-- logo -->
-            <div class="logo" title="Nafie">
+            <div class="logo" title="Eslam">
               <h1><a href="/">Eslam</a></h1>
             </div>
 
@@ -70,13 +70,6 @@
 
               <!-- nav menu links -->
               <ul class="nav-links">
-                {% comment %} <li v-for="link in navLinks" :key="link.url">
-                  <a :href="link.url" @click="closeNavMenu">
-                    <li><a href="">Rooms</a></li>
-                    <li><a href="">Profile</a></li>
-                  </a>
-                </li> {% endcomment %}
-                <li><a href="">Skills & Tools</a></li>
                 <li><a href="{%url 'portfolio:projects' %}">Projects</a></li>
                 <li><a href="{%url 'portfolio:blogs' %}">Blogs</a></li>
                 <li><a href="{%url 'portfolio:contact' %}">Contact Me</a></li>
@@ -92,7 +85,7 @@
                       I love making things simple, intuitive and expertly crafted!
                     </p>
                     <h4 class="block-title">
-                      Product is the vital essence of what i do, truly great product is born of meticulous planning and process. This is where i specialized!
+                     {{about.bio_2}}
                     </h4>
                   </div>
 
@@ -101,25 +94,23 @@
                     <li class="col-lg-4">
                       <h4 class="block-title">Email</h4>
                       <ul>
-                        <li><a href="mailto:info@nafie.com">info@nafie.com</a></li>
-                        <li><a href="mailto:support@nafie.com">support@nafie.com</a></li>
+                        <li><a href="mailto:info@nafie.com">{{about.email}}</a></li>
+                        {% comment %} <li><a href="mailto:support@nafie.com">support@nafie.com</a></li> {% endcomment %}
                       </ul>
                     </li>
                     <li class="col-lg-4">
                       <h4 class="block-title">Address</h4>
                       <ul>
                         <li>
-                          941 saqrqorish Road, alandalos,
-                          <br>
-                          grnata, wa 47122-4194
+                          {{about.address}}
                         </li>
                       </ul>
                     </li>
                     <li class="col-lg-4">
                       <h4 class="block-title">Phone</h4>
                       <ul>
-                        <li><a href="tel:02966202290">(02) 966 202 290</a></li>
-                        <li><a href="tel:02966202291">(02) 966 202 291</a></li>
+                        <li><a href="tel:02966202290">(20) {{about.phone_number}}</a></li>
+                        <li><a href="tel:02966202291">(20) {{about.phone_number_2}}</a></li>
                       </ul>
                     </li>
                   </ul>

@@ -1,17 +1,30 @@
+from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import *
 from django.views import View
 from django.views.generic import ListView
-from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
+from django.http import FileResponse
+import os
 
 # Create your views here.
 
 
 def main(request):
     all_colleagues = Colleagues.objects.filter(is_approve=True)
+    projects = Projects.objects.all()
+    skills = Skills.objects.all()
+    length_project = len(projects)
+    length_colleague = len(all_colleagues)
+    context = {
+        "colleagues": all_colleagues,
+        "projects": projects,
+        "length": length_project,
+        "length_colleague": length_colleague,
+        "skills": skills,
+    }
     if request.method == "POST":
         if request.FILES.get("image") == None:
             colleagues_name = request.POST["name"]
@@ -50,10 +63,13 @@ def main(request):
             )
             return redirect("/")
 
-    if len(all_colleagues) == 0:
-        colleagues = "Be the first to comment."
-        return render(request, "portfolio/portfolio.html", {"colleague": colleagues})
-    return render(request, "portfolio/portfolio.html", {"colleagues": all_colleagues})
+        if len(all_colleagues) == 0:
+            colleagues = "Be the first to comment."
+            return render(
+                request, "portfolio/portfolio.html", {"colleague": colleagues}
+            )
+
+    return render(request, "portfolio/portfolio.html", context)
 
 
 class Projects_view(ListView):
@@ -95,5 +111,14 @@ def contact(request):
     return render(request, "portfolio/contact.html")
 
 
-def skillsandtools(request):
-    pass
+def download_file(request, *args, **kwargs):
+    file_path = settings.PDF_FILE_PATH
+    if os.path.exists(file_path):
+        with open(file_path, "rb") as fh:
+            response = HttpResponse(fh.read(), content_type="application/pdf")
+            response["Content-Disposition"] = "inline; filename=" + os.path.basename(
+                file_path
+            )
+            return response
+    else:
+        return HttpResponse("PDF not found", status=404)
