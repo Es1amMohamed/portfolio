@@ -23,29 +23,29 @@
           <!-- contact info -->
           <ul class="contact-info">
             <li>
-              <img src="assets/images/icons/address.png" alt="Address">
+              <img src="{%static 'assets/images/icons/address.png' %}" alt="Address">
               <div>
                 <strong>Address:</strong>
-                941 Saqrqorish Road, alandalos, grnata, wa 47122-4194
+                {{about.address}}
               </div>
             </li>
             <li>
-              <img src="assets/images/icons/phone.png" alt="Phone">
+              <img src="{%static 'assets/images/icons/phone.png' %}" alt="Phone">
               <div>
                 <strong>Phone:</strong>
                 <ul>
-                  <li><a href="tel:02966202290" class="ltr-dir">(02) 966 202 290</a></li>
-                  <li><a href="tel:02966202291" class="ltr-dir">(02) 966 202 291</a></li>
+                  <li><a href="tel:02966202290" class="ltr-dir">(20) {{about.phone_number}}</a></li>
+                  <li><a href="tel:02966202291" class="ltr-dir">(20) {{about.phone_number_2}}</a></li>
                 </ul>
               </div>
             </li>
             <li>
-              <img src="assets/images/icons/email.png" alt="Email">
+              <img src="{%static 'assets/images/icons/email.png' %}" alt="Email">
               <div>
                 <strong>Email:</strong>
                 <ul>
-                  <li><a href="mailto:info@nafie.com">info@nafie.com</a></li>
-                  <li><a href="mailto:support@nafie.com">support@nafie.com</a></li>
+                  <li><a href="mailto:info@nafie.com">{{about.email}}</a></li>
+                  {% comment %} <li><a href="mailto:support@nafie.com">support@nafie.com</a></li> {% endcomment %}
                 </ul>
               </div>
             </li>
@@ -54,23 +54,23 @@
           <!-- social links -->
           <ul class="social">
             <li>
-              <a href="#" target="_blank" rel="noreferrer" v-tooltip="{text: 'Facebook', dir: 'top'}">
+              <a href="{{about.facebook_link}}" target="_blank" rel="noreferrer" v-tooltip="{text: 'Facebook', dir: 'top'}">
                 <i class="fa fa-facebook" aria-hidden="true"></i>
               </a>
             </li>
             <li>
-              <a href="#" target="_blank" rel="noreferrer" v-tooltip="{text: 'Twitter', dir: 'top'}">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
+              <a href="{{about.github_link}}" target="_blank" rel="noreferrer" v-tooltip="{text: 'Githup', dir: 'top'}">
+                <i class="fa fa-github" aria-hidden="true"></i>
               </a>
             </li>
             <li>
-              <a href="#" target="_blank" rel="noreferrer" v-tooltip="{text: 'LinkedIn', dir: 'top'}">
+              <a href="{{about.linkedin_link}}" target="_blank" rel="noreferrer" v-tooltip="{text: 'LinkedIn', dir: 'top'}">
                 <i class="fa fa-linkedin" aria-hidden="true"></i>
               </a>
             </li>
             <li>
-              <a href="#" target="_blank" rel="noreferrer" v-tooltip="{text: 'YouTube', dir: 'top'}">
-                <i class="fa fa-youtube-play" aria-hidden="true"></i>
+              {% comment %} <a href="#" target="_blank" rel="noreferrer" v-tooltip="{text: 'YouTube', dir: 'top'}">
+                <i class="fa fa-youtube-play" aria-hidden="true"></i> {% endcomment %}
               </a>
             </li>
           </ul>

@@ -127,9 +127,12 @@ class Blogs(models.Model):
 
 class CoursesAndCertificates(models.Model):
     title = models.CharField(max_length=100)
-    course_link = models.URLField(max_length=200)
-    certificate_link = models.URLField(max_length=200, null=True, blank=True)
+    course_link = models.URLField(max_length=500)
+    course_image = models.ImageField(upload_to="course_images", null=True, blank=True)
+    certificate_link = models.URLField(max_length=500, null=True, blank=True)
     description = models.TextField(max_length=1000)
+    start_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    end_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     slug = models.SlugField(null=True, blank=True)
 
     def __str__(self):

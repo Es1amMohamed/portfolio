@@ -16,14 +16,18 @@ def main(request):
     all_colleagues = Colleagues.objects.filter(is_approve=True)
     projects = Projects.objects.all()
     skills = Skills.objects.all()
+    tools = Tools.objects.all()
     length_project = len(projects)
     length_colleague = len(all_colleagues)
+    courses = CoursesAndCertificates.objects.all()
     context = {
         "colleagues": all_colleagues,
         "projects": projects,
         "length": length_project,
         "length_colleague": length_colleague,
         "skills": skills,
+        "tools": tools,
+        "courses": courses,
     }
     if request.method == "POST":
         if request.FILES.get("image") == None:

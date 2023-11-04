@@ -188,12 +188,15 @@
                 
                 <!-- tools list -->
                 <ul v-staggerdelay="50" v-show="skillsType === 'tools'">
+                  {% for tool in tools %}
                   <li tabindex="0"
-                    v-for="tool in toolsItems"
-                    :key="tool.title"
-                    v-tooltip="{text: tool.title, dir: 'top'}">
-                      <img :src="tool.imgUrl" :alt="tool.title"><a href="#"></a>
+                    key="{{tool.name}}"
+                    v-tooltip="{text: '{{tool.name}}', dir: 'top'}">
+                    <div class="skill-icon">
+                      <img src="{{tool.icon.url}}" alt="{{tool.name}}"><a href="#"></a>
+                    </div>
                   </li>
+                  {% endfor %}
                 </ul>
               </div>
             </div>
@@ -202,7 +205,7 @@
         <!-- end of skills section -->
 
         <!-- start of experience section -->
-        <div id="experience" class="experience-section section" tabindex="-1">
+        {% comment %} <div id="experience" class="experience-section section" tabindex="-1">
           <div class="container">
             <div class="section-content row">
 
@@ -249,7 +252,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
         <!-- end of experience section -->
 
         <!-- start of portfolio section -->
@@ -276,24 +279,26 @@
                 </li>
 
                 <!-- start items list -->
+                {% for course in courses %}
                 <li class="portfolio-item"
-                  v-for="work in filteredPortfolioItems"
-                  :key="work.title.en">
-                  <a :href="work.url" target="_blank" rel="noopener">
+                  
+                  key="{{course.title}}">
+                  <a href="work.url" target="_blank" rel="noopener">
                     <div class="item-img">
-                      <img :src="work.imgUrl" :alt="work.title.en">
+                      <img src="{{course.course_image.url}}" alt="work.title.en">
                     </div>
                     <div class="item-details">
-                      <h3 class="title">{{ work.title.en }}</h3>
-                      <div class="date">{{ work.date.en }}</div>
+                      <h3 class="title">{{ course.title }}</h3>
+                      <div class="date">{{ course.start_date.date}}</div>
                     </div>
                   </a>
                 </li>
+                {% endfor %}
                 <!-- end items list -->
 
-                <li>
+                {% comment %} <li>
                   <button class="more" @click="getPortfolioItems">Load more works</button>
-                </li>
+                </li> {% endcomment %}
               </ul>
             </div>
           </div>
