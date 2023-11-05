@@ -283,7 +283,7 @@
                 <li class="portfolio-item"
                   
                   key="{{course.title}}">
-                  <a href="work.url" target="_blank" rel="noopener">
+                  <a href="{%url 'portfolio:course' course.slug %}" target="_blank" rel="noopener">
                     <div class="item-img">
                       <img src="{{course.course_image.url}}" alt="work.title.en">
                     </div>

@@ -125,7 +125,7 @@ class Blogs(models.Model):
         super(Blogs, self).save(*args, **kwargs)
 
 
-class CoursesAndCertificates(models.Model):
+class Courses(models.Model):
     title = models.CharField(max_length=100)
     course_link = models.URLField(max_length=500)
     course_image = models.ImageField(upload_to="course_images", null=True, blank=True)

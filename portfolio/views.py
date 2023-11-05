@@ -19,7 +19,7 @@ def main(request):
     tools = Tools.objects.all()
     length_project = len(projects)
     length_colleague = len(all_colleagues)
-    courses = CoursesAndCertificates.objects.all()
+    courses = Courses.objects.all()
     context = {
         "colleagues": all_colleagues,
         "projects": projects,
@@ -126,3 +126,8 @@ def download_file(request, *args, **kwargs):
             return response
     else:
         return HttpResponse("PDF not found", status=404)
+
+
+def course(request , slug):
+    course = Courses.objects.get(slug=slug)
+    return render(request, "portfolio/course.html", {"course": course})
