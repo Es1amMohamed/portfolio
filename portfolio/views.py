@@ -128,6 +128,6 @@ def download_file(request, *args, **kwargs):
         return HttpResponse("PDF not found", status=404)
 
 
-def course(request , slug):
+def course(request, slug):
     course = Courses.objects.get(slug=slug)
     return render(request, "portfolio/course.html", {"course": course})

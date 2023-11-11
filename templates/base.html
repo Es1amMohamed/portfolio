@@ -117,28 +117,19 @@
                 </div>
               </div>
             </nav>
-
+          
             <!-- options icons -->
+          <div>
             <ul class="options-icons">
 
               <!-- lang switcher button -->
+            
               <li class="lang-switcher">
                 <ul class="lang-switcher-menu">
                   <li class="menu-item menu-item-has-children">
-                    <a href="#">En</a>
-
-                    <ul class="sub-menu">
-                      <li class="menu-item">
-                        <a href="index.html">En</a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="#">ع</a>
-                      </li>
-                    </ul>
                   </li>
                 </ul>
               </li>
-
               <!-- theme switcher button -->
               <li class="theme-switcher">
                 <button :class="savedTheme" title="Change Mode" @click="changeAppTheme"></button>
@@ -161,12 +152,12 @@
         <!-- end of header -->
 
         {% block 'body' %}
-        
+
         {% endblock 'body' %}
         <!-- start of footer -->
-        
-        
-        
+
+
+
         <!-- end of footer -->
 
         <!-- scroll to top button -->

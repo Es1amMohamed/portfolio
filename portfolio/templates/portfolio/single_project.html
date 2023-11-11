@@ -9,10 +9,10 @@
                 <li>
                     <div class="text-box-block" >
                         <span class="subtitle">
-                            <a href="archive-portfolio.html?tax=cat&amp;cat=HTML">HTML</a>
+                            <a href="{%url 'portfolio:projects'%}">Django</a>
                         </span>
                         <h2>Lorem Ipsum Dolor 16</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p></p>
                         <ul class="work-tools">
                             <li>
                                 <a href="archive-portfolio.html?tax=tools&amp;tools=HTML">HTML</a>
@@ -68,5 +68,20 @@
                     </div>
                 </li>
             </div>
-                
+           {% comment %} <div style="width:800px; margin:0 auto;">
+                <li class="portfolio-item" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
+                    <a class="glightbox" target="_blank" rel="noopener" data-gallery="gallery1" href="{{course.course_image.url}}" data-glightbox="title:{{course.title}}">
+                        <div class="item-img">
+                            <img src='{{course.course_image.url}}'  href='{{course.course_image.url}}'>
+                        </div>
+                         <div class="item-details">
+                            <h3 class="title">{{course.title}}</h3>
+                        </div> 
+                    </a>
+                    <div class="js-tilt-glare" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none;">
+                        <div class="js-tilt-glare-inner" style="position: absolute; top: 50%; left: 50%; pointer-events: none; background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%); transform: rotate(180deg) translate(-50%, -50%); transform-origin: 0% 0%; opacity: 0; width: 492px; height: 492px;">
+                        </div>
+                    </div>
+                </li>
+            </div>{% endcomment %}
 {% endblock 'body' %}

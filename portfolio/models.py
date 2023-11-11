@@ -2,6 +2,7 @@ from django.utils import timezone
 from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 
 
 class Portfolio(models.Model):
@@ -54,7 +55,7 @@ class Tools(models.Model):
 
 class Projects(models.Model):
     title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="projects_images", null=True, blank=True)
+    image = models.ImageField(upload_to="main_projects_images", null=True, blank=True)
     video_poster = models.ImageField(upload_to="video_posters", null=True, blank=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField(null=True, blank=True)
@@ -86,6 +87,13 @@ class Projects(models.Model):
         return self.title
 
 
+class ProjectsImages(models.Model):
+    project = models.ForeignKey(
+        Projects, on_delete=models.CASCADE, related_name="project_images"
+    )
+    image = models.ImageField(upload_to="projects_images")
+
+
 class Colleagues(models.Model):
     name = models.CharField(max_length=100)
     job_title = models.CharField(max_length=100)
@@ -107,12 +115,14 @@ class Category(models.Model):
 
 
 class Blogs(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="blogs_images", null=True, blank=True)
-    caption = models.CharField(max_length=1000, null=True, blank=True)
-    description = models.TextField(max_length=1000)
-    created_at = models.DateTimeField(default=timezone.now)
-    slug = models.SlugField(null=True, blank=True)
+    title = models.CharField(_("title"), max_length=100)
+    image = models.ImageField(
+        upload_to="blogs_images", null=True, blank=True, verbose_name=_("image")
+    )
+    caption = models.CharField(_("caption"), max_length=1000, null=True, blank=True)
+    description = models.TextField(_("description"), max_length=1000)
+    created_at = models.DateTimeField(_("created_at"), default=timezone.now)
+    slug = models.SlugField(_("url"), null=True, blank=True)
     objects = models.Manager()
 
     def __str__(self):
@@ -131,8 +141,8 @@ class Courses(models.Model):
     course_image = models.ImageField(upload_to="course_images", null=True, blank=True)
     certificate_link = models.URLField(max_length=500, null=True, blank=True)
     description = models.TextField(max_length=1000)
-    start_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    end_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    start_date = models.DateTimeField(null=True, blank=True)
+    end_date = models.DateTimeField(null=True, blank=True)
     slug = models.SlugField(null=True, blank=True)
 
     def __str__(self):
@@ -142,7 +152,7 @@ class Courses(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
 
-        super(CoursesAndCertificates, self).save(*args, **kwargs)
+        super(Courses, self).save(*args, **kwargs)
 
 
 class Contact(models.Model):

@@ -2,29 +2,51 @@
 {% load static %}
 
 {% block 'body' %}
+
 <div style="width: 800px;margin:0 auto;">
             <ul class="portfolio-items has-works">
-            
                 <li>
                     <div class="text-box-block" >
-                        
                             <span class="subtitle">
-                            
-                                <a href="archive-portfolio.html?tax=cat&amp;cat=HTML">HTML</a>
+                                <a href="{%url 'portfolio:blogs'%}">BLOGS</a>
                             </span>
-                        
-                        <h2>Lorem Ipsum Dolor 16</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                            when an unknown printer took a galley of type and scrambled it to make a
-                            type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                             remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                              and more recently with desktop publishing software like Aldus PageMaker including versions 
-                              of Lorem Ipsum.</p>
+                        <h2>{{blog.title}}</h2>
+                        <p>{{blog.description|safe}}</p>
                     </div>
                 </li>
-            
-                <img src='{{blog.image.url}}'>
-             
-                
+        <li class="portfolio-item" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
+            <a class="glightbox" target="_blank" rel="noopener" data-gallery="gallery1" href="{{blog.image.url}}" >
+                <div class="item-img"><img src="{{blog.image.url}}" alt="{{blog.title}}">
+                </div>
+                <div class="item-details">
+                    <h3 class="title">{{blog.title}}</h3>
+                </div>
+            </a>
+            <div class="js-tilt-glare" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none;">
+                <div class="js-tilt-glare-inner" style="position: absolute; top: 50%; left: 50%; pointer-events: none; background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%); transform: rotate(180deg) translate(-50%, -50%); transform-origin: 0% 0%; opacity: 0; width: 492px; height: 492px;">
+        
+                </div>
+            </div>
+        </li>
 </div> 
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+   
+    var disqus_config = function () {
+    this.page.url = 'http://127.0.0.1:8000/{%url "portfolio:blogs" %}{{blog.slug}}';  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = '{{blog.slug}}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://booking-9.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
 {% endblock 'body' %}
