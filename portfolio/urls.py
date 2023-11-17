@@ -11,7 +11,7 @@ urlpatterns = [
     path("projects/<str:slug>", views.single_project, name="single_project"),
     path("blogs/", views.Blogs_view.as_view(), name="blogs"),
     path("blogs/<str:slug>", views.single_blog, name="single_blog"),
-    path("download/", views.download_file, name="download"),
+    path("download/cv", views.download_file, name="download"),
     path("course/<str:slug>", views.course, name="course"),
 ]
 
