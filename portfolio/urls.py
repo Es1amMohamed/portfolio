@@ -4,7 +4,7 @@ from .views import *
 
 app_name = "portfolio"
 
-urlpatterns = [
+urlpatterns = [ 
     path("", views.main, name="main"),
     path("contact/", views.contact, name="contact"),
     path("projects/", views.Projects_view.as_view(), name="projects"),
@@ -14,3 +14,5 @@ urlpatterns = [
     path("download/", views.download_file, name="download"),
     path("course/<str:slug>", views.course, name="course"),
 ]
+
+handler404 = "portfolio.views.handel404"

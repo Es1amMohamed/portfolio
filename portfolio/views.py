@@ -131,3 +131,6 @@ def download_file(request, *args, **kwargs):
 def course(request, slug):
     course = Courses.objects.get(slug=slug)
     return render(request, "portfolio/course.html", {"course": course})
+
+def handel404(request, exception):
+    return render(request, "404.html", status=404)
