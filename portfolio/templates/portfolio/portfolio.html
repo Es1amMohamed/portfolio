@@ -56,16 +56,16 @@
             <div class="container">
               <ul class="statistics-items row">
                 <li class="col-sm-12 col-md-6 col-lg-4">
-                  <a href="#experience">
+                  <a href="#courses">
                     <div class="icon">
                       <img src="{%static 'assets/images/icons/emblem.png' %}" alt="Years of Experience">
                     </div>
                     <div class="text">
-                      <h3>{{ about.years_of_experience }}+</h3>
-                      <strong>Years of Experience</strong>
+                      <h3>{{ length_course }}+</h3>
+                      <strong>Courses and experience</strong>
                     </div>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
-                  </a>
+                  </a> 
                 </li>
                 <li class="col-sm-12 col-md-6 col-lg-4">
                   <a href="{%url 'portfolio:projects' %}">
@@ -264,15 +264,15 @@
               <ul class="portfolio-items has-works" ref="portfolioItems" data-no-works-msg="No works to load">
                 <li>
                   <!-- text box -->
-                  <div class="text-box-inline">
-                    <span class="subtitle">my works</span>
+                  <div id="courses" class="text-box-inline">
+                    <span class="subtitle">my progress</span>
                     <h2>
-                      See My Works Which
+                      Explore my accomplishments
                       <br>
-                      Will Amaze You!
+                      Sure to captivate your admiration!!
                     </h2>
                     <p>
-                      We develop the best quality website that serves for the long-term. Well-documented, clean, easy and elegant interface helps any non-technical clients.
+                      I am enthusiastically committed to continuous learning, driven by a genuine passion to expand my knowledge and skills. My goal is to evolve into a more valuable contributor to the success of our team, bringing forth a heightened level of expertise and dedication.
                     </p>
                     
                   </div>
@@ -288,7 +288,7 @@
                     </div>
                     <div class="item-details">
                       <h3 class="title">{{ course.title }}</h3>
-                      <div class="date">{{ course.start_date.date}}</div>
+                      <div class="date">{{ course.end_date.date}}</div>
                     </div>
                   </a>
                 </li>
@@ -310,18 +310,17 @@
             <div class="section-title">
               <span class="subtitle">testimonials</span>
               <h2 class="title">
-                Check What's My Clients
+                Check What's My Clients  And Colleagues
                 <br>
                 Say About Me
               </h2>
             </div>
           </div>
-          {% if colleague %}
+          {% if first_comment %}
               <div class="container">
                 <div class="section-title">
                   <h2 class="title">
-                  {{colleague}}
-                  
+                  {{first_comment}}
                   </h2>
                 </div>
               </div>

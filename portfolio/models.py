@@ -154,6 +154,9 @@ class Courses(models.Model):
 
         super(Courses, self).save(*args, **kwargs)
 
+    class Meta:
+        ordering = ["start_date"]
+
 
 class Contact(models.Model):
     name = models.CharField(max_length=100)

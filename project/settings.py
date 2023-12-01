@@ -16,12 +16,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY", 'django-insecure-_go(qtg+q2@3ll!2cwgvhdeuq7&q9k+=2y(mf08ta091kx#&7_')
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY", "django-insecure-_go(qtg+q2@3ll!2cwgvhdeuq7&q9k+=2y(mf08ta091kx#&7_"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'my-website-e5g1.onrender.com/']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -40,7 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -75,22 +77,18 @@ WSGI_APPLICATION = "project.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 if not DEBUG:
-    DATABASES = {
-        "default": dj_database_url.parse(env("DATABASE_URL"))
-    }
+    DATABASES = {"default": dj_database_url.parse(env("DATABASE_URL"))}
 else:
     DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("NAME"),
-        "USER": os.environ.get("USER"),
-        "PASSWORD": os.environ.get("PASSWORD"),
-        "HOST": "localhost",
-        "PORT": "5433",
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ.get("NAME"),
+            "USER": os.environ.get("USER"),
+            "PASSWORD": os.environ.get("PASSWORD"),
+            "HOST": "localhost",
+            "PORT": "5433",
+        }
     }
-}
-
-
 
 
 # Password validation
@@ -129,7 +127,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # STATICFILES_DIRS = [
 #     BASE_DIR / "static",
 # ]

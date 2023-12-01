@@ -20,6 +20,7 @@ def main(request):
     length_project = len(projects)
     length_colleague = len(all_colleagues)
     courses = Courses.objects.all()
+    length_course = len(Courses.objects.all())
     context = {
         "colleagues": all_colleagues,
         "projects": projects,
@@ -28,7 +29,9 @@ def main(request):
         "skills": skills,
         "tools": tools,
         "courses": courses,
+        "length_course": length_course,
     }
+
     if request.method == "POST":
         if request.FILES.get("image") == None:
             colleagues_name = request.POST["name"]
@@ -67,11 +70,10 @@ def main(request):
             )
             return redirect("/")
 
-        if len(all_colleagues) == 0:
-            colleagues = "Be the first to comment."
-            return render(
-                request, "portfolio/portfolio.html", {"colleague": colleagues}
-            )
+    if len(all_colleagues) == 0:
+        first_comment = "Be the first to comment."
+        context["first_comment"] = first_comment
+        return render(request, "portfolio/portfolio.html", context)
 
     return render(request, "portfolio/portfolio.html", context)
 
@@ -131,6 +133,7 @@ def download_file(request, *args, **kwargs):
 def course(request, slug):
     course = Courses.objects.get(slug=slug)
     return render(request, "portfolio/course.html", {"course": course})
+
 
 def handel404(request, exception):
     return render(request, "404.html", status=404)
