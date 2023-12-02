@@ -59,7 +59,7 @@ class Projects(models.Model):
     video_poster = models.ImageField(upload_to="video_posters", null=True, blank=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField(null=True, blank=True)
-    description = models.TextField(max_length=1000)
+    description = models.TextField(max_length=4000)
     category = models.ForeignKey(
         "Category", on_delete=models.CASCADE, blank=True, null=True
     )
