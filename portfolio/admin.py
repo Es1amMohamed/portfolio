@@ -12,7 +12,7 @@ class BlogSummernote(SummernoteModelAdmin):  # instead of ModelAdmin
 admin.site.register(Portfolio)
 admin.site.register(Skills)
 admin.site.register(Tools)
-admin.site.register(Projects)
+admin.site.register(Projects, BlogSummernote)
 admin.site.register(Blogs, BlogSummernote)
 admin.site.register(Colleagues)
 admin.site.register(Category)

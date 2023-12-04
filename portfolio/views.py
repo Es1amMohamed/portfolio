@@ -92,7 +92,16 @@ class Blogs_view(ListView):
 
 def single_project(request, slug):
     project = Projects.objects.get(slug=slug)
-    return render(request, "portfolio/single_project.html", {"project": project})
+    project_image = ProjectsImages.objects.filter(project=project.id)
+    project_related = project.skills_used.all()
+    project_related2 = project.Tools_used.all()
+    context = {
+        "project": project,
+        "project_image": project_image,
+        "project_related": project_related,
+        "project_related2": project_related2,
+    }
+    return render(request, "portfolio/single_project.html", context)
 
 
 def single_blog(request, slug):

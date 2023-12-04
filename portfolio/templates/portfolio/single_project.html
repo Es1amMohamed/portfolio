@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+ 
 {% block 'body' %}
 <div class="portfolio-page portfolio-section section page" >
     <div class="container">
@@ -9,73 +9,47 @@
                 <li>
                     <div class="text-box-block" >
                         <span class="subtitle">
-                            <a href="{%url 'portfolio:projects'%}">Django</a>
+                            <a href="{{project.repo_link}}">repo link</a>
                         </span>
-                        <h2>Lorem Ipsum Dolor 16</h2>
-                        <p></p>
+                        <h2>{{project.title}}</h2>
+                        <p>{{project.description|safe}}</p>
                         <ul class="work-tools">
+                        {% for skill in project_related %} 
                             <li>
-                                <a href="archive-portfolio.html?tax=tools&amp;tools=HTML">HTML</a>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=HTML">{{skill.name}}</a>
                             </li>
+                        {% endfor %}
+                        {% for tool in project_related2 %}
                             <li>
-                                <a href="archive-portfolio.html?tax=tools&amp;tools=Slim">Slim</a>
+                                <a href="archive-portfolio.html?tax=tools&amp;tools=HTML">{{tool.name}}</a>
                             </li>
-                            <li>
-                                <a href="archive-portfolio.html?tax=tools&amp;tools=CSS">CSS</a>
-                            </li>
-                            <li>
-                                <a href="archive-portfolio.html?tax=tools&amp;tools=Less">Less</a>
-                            </li>
-                            <li>
-                                <a href="archive-portfolio.html?tax=tools&amp;tools=JavaScript">JavaScript</a>
-                            </li>
-                            <li>
-                                <a href="archive-portfolio.html?tax=tools&amp;tools=TypeScript">TypeScript</a>
-                            </li>
-                            <li>
-                                <a href="archive-portfolio.html?tax=tools&amp;tools=Bootstrap">Bootstrap</a>
-                            </li>
-                            <li>
-                                <a href="archive-portfolio.html?tax=tools&amp;tools=AJAX">AJAX</a>
-                            </li>
-                            <li>
-                                <a href="archive-portfolio.html?tax=tools&amp;tools=Vue">Vue</a>
-                            </li>
-                            <li>
-                                <a href="archive-portfolio.html?tax=tools&amp;tools=NodeJs">NodeJs</a>
-                            </li>
-                            <li>
-                                <a href="archive-portfolio.html?tax=tools&amp;tools=MongoDB">MongoDB</a>
-                            </li>
+                        {% endfor %} 
                         </ul>
-                    </div>
-                </li>
-            <div style="width:800px; margin:0 auto;">
+                        
                 <li class="portfolio-item" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                    <a class="glightbox" target="_blank" rel="noopener" data-gallery="gallery1" href="{{project.video.url}}" data-glightbox="title:{{project.title}}">
-                        <div class="item-img">
-                            <video style="width: 100%;"  poster="{{project.image.url}}" controls="controls" preload="preload" >
-                                <source src="{{ project.video.url }}" type="video/mp4" href='{{project.video.url}}'>
-                            </video>
-                        </div>
-                        <div class="item-details">
-                            <h3 class="title">{{project.title}}</h3>
-                        </div>
-                    </a>
-                    <div class="js-tilt-glare" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none;">
-                        <div class="js-tilt-glare-inner" style="position: absolute; top: 50%; left: 50%; pointer-events: none; background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%); transform: rotate(180deg) translate(-50%, -50%); transform-origin: 0% 0%; opacity: 0; width: 492px; height: 492px;">
-                        </div>
-                    </div>
-                </li>
-            </div>
-            <div style="width:800px; margin:0 auto;">
+                            <a class="glightbox" target="_blank" rel="noopener" data-gallery="gallery1" href="{{project.video.url}}">
+                                <div class="item-img">
+                                    <video style="width: 100%;"  poster="{{project.video_poster.url}}" controls="controls" preload="preload" >
+                                        <source src="{{ project.video.url }}" type="video/mp4" href='{{project.video.url}}'>
+                                    </video>
+                                </div>
+                                <div class="item-details">
+                                    <h3 class="title">{{project.title}}</h3>
+                                </div>
+                            </a>
+                            <div class="js-tilt-glare" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none;">
+                                <div class="js-tilt-glare-inner" style="position: absolute; top: 50%; left: 50%; pointer-events: none; background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%); transform: rotate(180deg) translate(-50%, -50%); transform-origin: 0% 0%; opacity: 0; width: 492px; height: 492px;">
+                                </div>
+                            </div>
+                        </li>
+                {% for image in project_image %}
                 <li class="portfolio-item" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                    <a class="glightbox" target="_blank" rel="noopener" data-gallery="gallery1" href="{{course.course_image.url}}" data-glightbox="title:{{course.title}}">
+                    <a class="glightbox" target="_blank" rel="noopener" data-gallery="gallery1" href="{{image.image.url}}">
                         <div class="item-img">
-                            <img src='{{course.course_image.url}}'  href='{{course.course_image.url}}'>
+                            <img src='{{image.image.url}}' href='{{image.image.url}}'>
                         </div>
                          <div class="item-details">
-                            <h3 class="title">{{course.title}}</h3>
+                            <h3 class="title">{{project.title}}</h3>
                         </div> 
                     </a>
                     <div class="js-tilt-glare" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none;">
@@ -83,5 +57,11 @@
                         </div>
                     </div>
                 </li>
-            </div>
+                {% endfor %} 
+                    </div>
+                </li>
+            
+                
+            
+
 {% endblock 'body' %}
