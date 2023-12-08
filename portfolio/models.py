@@ -40,6 +40,7 @@ class AboutMe(models.Model):
 class Skills(models.Model):
     name = models.CharField(max_length=50)
     icon = models.ImageField(upload_to="skills_icon")
+    link = models.URLField(max_length=500,null=True,blank=True)
 
     def __str__(self):
         return self.name
@@ -48,6 +49,7 @@ class Skills(models.Model):
 class Tools(models.Model):
     name = models.CharField(max_length=50)
     icon = models.ImageField(upload_to="tools_icon")
+    link = models.URLField(max_length=500,null=True,blank=True)
 
     def __str__(self):
         return self.name
@@ -120,7 +122,7 @@ class Blogs(models.Model):
         upload_to="blogs_images", null=True, blank=True, verbose_name=_("image")
     )
     caption = models.CharField(_("caption"), max_length=1000, null=True, blank=True)
-    description = models.TextField(_("description"), max_length=1000)
+    description = models.TextField(_("description"), max_length=5000)
     created_at = models.DateTimeField(_("created_at"), default=timezone.now)
     slug = models.SlugField(_("url"), null=True, blank=True)
     objects = models.Manager()
